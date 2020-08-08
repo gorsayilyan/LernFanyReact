@@ -1,0 +1,36 @@
+.div1{
+    width: 50%;
+   height: 150px;
+   border: 1px solid black;
+   margin-left: 300px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   background-color: slategray;
+}
+.nkar{
+   width : 160px;
+   height: 148px;
+   border: 1px solid black;
+}
+
+.but{
+    width: 70px;
+    height: 30px;
+    color: orange;
+    background-color:black;
+    position: relative;
+    bottom:35vh;
+    border-radius: 10px;
+}
+
+#but1{
+    left: 255px;
+}
+#but2{
+    left: 1025px;
+}
+
+.vernagir{
+    color: black;
+}

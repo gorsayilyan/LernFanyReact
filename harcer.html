@@ -1,0 +1,207 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    const cat = {category: “food”}
+<Route 
+  exact path=”/items” 
+  render={props => <Items {…props} data={cat}/>}
+   -->
+      <!-- es incha nshanakum,,, 
+  տվյալները ներկայացնում են լրացուցիչ առաջարկներ, որոնք փոխանցվում են Նյութերի բաղադրիչին:
+     Այստեղ կատուն անցնում է որպես լրացուցիչ սողանք --> 
+ 
+
+<!-- <Route children={props => <Items {…props}/>}/>   Այս դեպքում Նյութերի բաղադրիչը միշտ մատուցվում է: -->
+
+<!-- 
+    Եկեք մանրամասն քննարկենք հատկությունները.
+=> url: Մի տող, որը վերադարձնում է URL- ի համապատասխան մասը
+=> path. Մի տող, որը վերադարձնում է երթուղու ուղին
+=> isExact. մի հաջողակ, որը ճիշտ է վերադառնում, եթե խաղը ճշգրիտ էր
+=> params. Հիմնական արժեքի զույգ պարունակող առարկա, որը համընկնում էր Path-To-RegExp փաթեթով: -->
+
+
+<!-- componentWillReceiveProps() Բաղադրիչը մոնտաժվեց, բայց դուք անցնում եք նոր առաջարկներ: Այս մեթոդը կոչվում է հենց 
+ այն ժամանակ, երբ երեխան որևէ բան անի նոր առաջարկների հետ -->
+
+ <!-- shouldComponentUbdate()ցանկանո՞ւմ եք բաղադրիչը թարմացնել նոր առաջարկներով: Պատասխանը բուլյան է (ճշմարիտ կամ կեղծ)
+Լռելյայն պատասխանը ճիշտ է: Եթե դուք չեք կիրառում այս մեթոդը, պետության կամ գամման յուրաքանչյուր թարմացում կհանգեցնի մատուցման նույնիսկ այն դեպքում, երբ առաջարկները չեն փոխվել:
+Դուք կարող եք խուսափել նույն մեթոդով մատուցելուց `օգտագործելով այս մեթոդը: Վերադառնալով կեղծը չի գործարկի որևէ մատուցող (), բաղադրիչWillUpdate (), բաղադրիչDidUpdate ()
+ -->
+
+ <!-- componentWillUpdate()
+Այս մեթոդը կոչվում է անմիջապես առաջարկելուց առաջ: Դուք չեք կարող փոփոխություններ կատարել DOM- ում, այն դեռևս չի արվում:
+   Այն նման է բաղադրիչWillMount- ին, բայց կիրառվում է առաջին մատուցման ժամանակ. -->
+<script>
+
+// const wait = time => new Promise((resolve) => setTimeout(resolve, time));
+
+// wait(3000).then(() => console.log('Hello!'));
+
+
+// const wait = time => new Promise(
+//   res => setTimeout(() => res(), time)
+// );
+
+// wait(200)
+//   // onFulfilled() can return a new promise, `x`
+//   .then(() => new Promise(res => res('foo')))
+//   // the next promise will assume the state of `x`
+//   .then(a => a)
+//   // Above we returned the unwrapped value of `x`
+//   // so `.then()` above returns a fulfilled promise
+//   // with that value:
+//   .then(b => console.log(b)) // 'foo'
+//   // Note that `null` is a valid promise value:
+//   .then(() => null)
+//   .then(c => console.log(c)) // null
+//   // The following error is not reported yet:
+//   .then(() => {throw new Error('foo');})
+//   // Instead, the returned promise is rejected
+//   // with the error as the reason:
+//   .then(
+//     // Nothing is logged here due to the error above:
+//     d => console.log(`d: ${ d }`),
+//     // Now we handle the error (rejection reason)
+//     e => console.log(e)) // [Error: foo]
+//   // With the previous exception handled, we can continue:
+//   .then(f => console.log(`f: ${ f }`)) // f: undefined
+//   // The following doesn't log. e was already handled,
+//   // so this handler doesn't get called:
+//   .catch(e => console.log(e))
+//   .then(() => { throw new Error('bar'); })
+//   // When a promise is rejected, success handlers get skipped.
+//   // Nothing logs here because of the 'bar' exception:
+//   .then(g => console.log(`g: ${ g }`))
+//   .catch(h => console.log(h)) // [Error: bar]
+// ;
+
+// save().then(           // Բայց ինչ է պատահում, եթե handleSuccess () -ը սխալ է նետում: 
+// handleSuccess,
+//   handleError                       // Դրանից հետո վերադարձված խոստումը (մերժումը) կմերժվի, բայց մերժումը
+//                       //   բռնելու բան չկա. Նշանակում է, որ ձեր ծրագրի սխալը կուլ է տալիս: Վայ
+
+// );
+
+
+
+// save()
+//   .then(handleSuccess)
+//   .catch(handleError)
+// ;
+
+// The difference is subtle, but important. In the first example, 
+// an error originating in the save() operation will be caught, but an 
+// error originating in the handleSuccess() function will be swallowed.
+
+
+
+// const wait = (
+//   time,
+//   cancel = Promise.reject()
+// ) => new Promise((resolve, reject) => {
+//   const timer = setTimeout(resolve, time);
+//   const noop = () => {};
+
+//   cancel.then(() => {
+//     clearTimeout(timer);
+//     reject(new Error('Cancelled'));
+//   }, noop);
+// });
+
+// const shouldCancel = Promise.resolve(); // Yes, cancel
+// // const shouldCancel = Promise.reject(); // No cancel
+
+// wait(2000, shouldCancel).then(
+//   () => console.log('Hello!'),
+//   (e) => console.log(e) // [Error: Cancelled]
+// ); 
+
+
+
+
+
+// const speculation = (
+//   fn,
+//   cancel = Promise.reject() // Don't cancel by default
+// ) => new Promise((resolve, reject) => {
+//   const noop = () => {};
+
+//   const onCancel = (
+//     handleCancel
+//   ) => cancel.then(
+//       handleCancel,
+//       // Ignore expected cancel rejections:
+//       noop
+//     )
+//     // handle onCancel errors
+//     .catch(e => reject(e))
+//   ;
+
+//   fn(resolve, reject, onCancel);
+// });
+
+
+
+// const axios = require('axios')
+
+// const getBreeds = async () => {
+//   try {
+//     return await axios.get('https://dog.ceo/api/breeds/list/all')
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
+
+// const countBreeds = async () => {
+//   const breeds = await getBreeds()
+
+//   if (breeds.data.message) {
+//     console.log(`Got ${Object.entries(breeds.data.message).length} breeds`)
+//   }
+// }
+
+// countBreeds()
+
+
+
+
+// const getSecret = (secret) => {
+//   return {
+//     get: () => secret
+//   };
+// };
+
+// test('Closure for object privacy.', assert => {
+//   const msg = '.get() should have access to the closure.';
+//   const expected = 1;
+//   const obj = getSecret(1);
+
+//   const actual = obj.get();
+
+//   try {
+//     assert.ok(secret, 'This throws an error.');
+//   } catch (e) {
+//     assert.ok(true, `The secret var is only available
+//       to privileged methods.`);
+//   }
+
+//   assert.equal(actual, expected, msg);
+//   assert.end();
+// });
+
+
+
+
+
+
+ </script>
+</body>
+</html>
